@@ -26,8 +26,6 @@ img1_weight = 0
 reverse = False # this is used to reverse the weight
 imgKeys = list(image.keys())
 
-print(image[imgKeys[0]][0])
-
 i = 0
 img1_weight = 0.5
 reverse = False
@@ -44,10 +42,10 @@ while True:
     # if img1_weight goes up, then img2_weight goes down accordingly and vice versa.
     img2_weight = 1 - img1_weight
 
-    dst = cv2.addWeighted(first_image, img1_weight, second_image, img2_weight, 0)
-    dst = cv2.addWeighted(img[i], img1_weight, img[i+1], img2_weight, 0)
+    dst = cv2.addWeighted(first_image, img1_weight, second_image, img2_weight, 0, dtype=cv2.CV_32F)
+    dst = cv2.addWeighted(image[imgKeys[0]][i], img1_weight, image[imgKeys[0]][i+1], img2_weight, 0, dtype=cv2.CV_32F)
 
-    if i+2 > len(img)-1:
+    if i+2 > len(image[imgKeys[0]])-1:
         i = 0
     else:
         i += 2
